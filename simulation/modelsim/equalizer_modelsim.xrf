@@ -1,0 +1,17 @@
+vendor_name = ModelSim
+source_file = 1, D:/projects/EQ/z_divider.v
+source_file = 1, D:/projects/EQ/z_dff.v
+source_file = 1, D:/projects/EQ/equalizer.bdf
+source_file = 1, D:/projects/EQ/a_decoder.v
+source_file = 1, D:/projects/EQ/a_tb.v
+source_file = 1, D:/projects/EQ/main.bdf
+source_file = 1, D:/projects/EQ/b_core.v
+source_file = 1, D:/projects/EQ/equalizer.sdc
+source_file = 1, D:/projects/EQ/b_tb.v
+source_file = 1, D:/projects/EQ/db/equalizer.cbx.xml
+design_name = main
+instance = comp, \decoded_clock~output , decoded_clock~output, main, 1
+instance = comp, \decoded_flow~output , decoded_flow~output, main, 1
+instance = comp, \spdif_cmos~input , spdif_cmos~input, main, 1
+instance = comp, \clock0~input , clock0~input, main, 1
+instance = comp, \rst_n~input , rst_n~input, main, 1

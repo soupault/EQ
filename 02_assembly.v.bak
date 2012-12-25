@@ -1,0 +1,24 @@
+module assembly (i_zero, i_one, i_head, i_rst_n, i_clk, i_ena, o_package, o_ready);
+
+input wire i_zero;
+input wire i_one;
+input wire i_head;
+input wire i_rst_n;
+input wire i_clk;
+input wire i_ena;
+
+output reg [// : ] o_package;
+output reg o_ready;
+
+always @(posedge i_clk or negedge i_rst_n)
+begin
+	if (~i_rst_n) begin
+// 
+	end else begin
+		if (i_ena) begin
+			if head 
+		end
+	end
+end
+
+endmodule

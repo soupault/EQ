@@ -1,0 +1,15 @@
+// Function    : D flip-flop async reset
+
+module dff (d, clk, clrn, q);
+
+input d, clk, clrn; 
+output reg q;
+
+always @ (posedge clk or negedge clrn)
+	if (reset) begin
+		q <= 1'b0;
+	end else begin
+		q <= data;
+	end
+
+endmodule

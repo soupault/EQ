@@ -1,0 +1,13 @@
+module core (i_spdif, i_rst_n, clk, o_data, o_valid);
+
+input wire i_spdif, i_rst_n, clk;
+output reg [23:0] o_data;
+output reg o_valid;
+
+wire enable;
+
+decoder dcdr1 (.i_spdif(i_spdif), .i_rst_n(i_rst_n), .clk(clk), .ena(enable), .o_decoded_data, .o_decoder_clk, tb_blivet, tb_window);
+core core1 (.i_spdif(i_spdif), .i_rst_n(i_rst_n), .clk(clk), o_flag, .o_enable(enable), /**/buffer);
+
+output reg [2:0] o_flag;
+/**/output reg [24:0] buffer;

@@ -1,0 +1,45 @@
+// To perform functional simulations, you must use the altera_primitives.v 
+// library located in the <Quartus II installation directory>\eda\sim_lib directory.
+
+module decoder (i_spdif, i_rst_n, clk, o_decoded_data, o_decoder_clk);
+
+input wire i_spdif, i_rst_n, clk;
+output reg o_decoded_data;
+output o_decoder_clk;
+
+reg [1:0] ff_d;
+reg ff_in;
+reg [4:0] ff_w;
+
+wire tmp_wire, data_wire;
+
+assign changeover = ff_in ~^ ff_d[1]; // xor
+assign window = ff_w[2] | ff_w[3];
+
+DFF ff_out1 (.d(1), .clk(window & changeover), .clrn(~ff_w[4]), .q(tmp_wire));
+DFF ff_out2 (.d(tmp_wire), .clk(ff_w[4]), .q(data_wire));
+
+always @(posedge clk or negedge i_rst_n)
+begin
+	if (i_rst_n == 0)
+	begin
+		ff_d = 0;
+		ff_in = 0;
+		ff_w = 0;
+		ff_out1.d = 0;
+		ff_out2.d = 0;
+	end else begin
+	
+	// metastability
+	{ff_d[1], ff_d[0]} = {ff_d[0], i_spdif};
+
+	// changeover detector
+	ff_in <= ff_d[1];
+
+	// decoded clock
+	ff_w[4:0] <= {ff_w[3:0], ff_in & window};
+	
+	end
+end
+
+endmodule
