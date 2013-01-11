@@ -1,5 +1,5 @@
 Fitter report for equalizer
-Thu Oct 25 14:19:00 2012
+Thu Jan 10 11:47:10 2013
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -32,6 +32,7 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
  24. Fitter Device Options
  25. Operating Settings and Conditions
  26. Fitter Messages
+ 27. Fitter Suppressed Messages
 
 
 
@@ -57,7 +58,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +------------------------------------+------------------------------------------+
-; Fitter Status                      ; Successful - Thu Oct 25 14:19:00 2012    ;
+; Fitter Status                      ; Successful - Thu Jan 10 11:47:10 2013    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; equalizer                                ;
 ; Top-level Entity Name              ; main                                     ;
@@ -153,8 +154,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; decoded_clock ; Incomplete set of assignments ;
 ; decoded_flow  ; Incomplete set of assignments ;
 ; spdif_cmos    ; Incomplete set of assignments ;
-; clock0        ; Incomplete set of assignments ;
 ; rst_n         ; Incomplete set of assignments ;
+; clock0        ; Incomplete set of assignments ;
 +---------------+-------------------------------+
 
 
@@ -328,8 +329,8 @@ The pin-out file can be found in D:/projects/EQ/equalizer.pin.
 +------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 ; Name       ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination Control Block ; Location assigned by ;
 +------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
-; clock0     ; AG18  ; 4        ; 69           ; 0            ; 7            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ;
-; rst_n      ; AD26  ; 5        ; 115          ; 10           ; 0            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ;
+; clock0     ; AD26  ; 5        ; 115          ; 10           ; 0            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ;
+; rst_n      ; AG18  ; 4        ; 69           ; 0            ; 7            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ;
 ; spdif_cmos ; A6    ; 8        ; 27           ; 73           ; 14           ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; Fitter               ;
 +------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 
@@ -521,7 +522,7 @@ The pin-out file can be found in D:/projects/EQ/equalizer.pin.
 ; AD23     ;            ; 4        ; VCCIO4                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; AD24     ; 260        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; AD25     ; 255        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; AD26     ; 281        ; 5        ; rst_n                                                     ; input  ; 2.5 V        ;         ; Row I/O    ; N               ; no       ; Off          ;
+; AD26     ; 281        ; 5        ; clock0                                                    ; input  ; 2.5 V        ;         ; Row I/O    ; N               ; no       ; Off          ;
 ; AD27     ; 286        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AD28     ; 285        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AE1      ; 106        ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -597,7 +598,7 @@ The pin-out file can be found in D:/projects/EQ/equalizer.pin.
 ; AG15     ; 201        ; 4        ; GND+                                                      ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; AG16     ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; AG17     ; 207        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; AG18     ; 217        ; 4        ; clock0                                                    ; input  ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
+; AG18     ; 217        ; 4        ; rst_n                                                     ; input  ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
 ; AG19     ; 219        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; AG20     ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; AG21     ; 223        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
@@ -1188,8 +1189,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; decoded_clock ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; decoded_flow  ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; spdif_cmos    ; Input    ; --            ; --            ; --                    ; --  ; --   ;
-; clock0        ; Input    ; --            ; --            ; --                    ; --  ; --   ;
 ; rst_n         ; Input    ; --            ; --            ; --                    ; --  ; --   ;
+; clock0        ; Input    ; --            ; --            ; --                    ; --  ; --   ;
 +---------------+----------+---------------+---------------+-----------------------+-----+------+
 
 
@@ -1199,8 +1200,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Source Pin / Fanout ; Pad To Core Index ; Setting ;
 +---------------------+-------------------+---------+
 ; spdif_cmos          ;                   ;         ;
-; clock0              ;                   ;         ;
 ; rst_n               ;                   ;         ;
+; clock0              ;                   ;         ;
 +---------------------+-------------------+---------+
 
 
@@ -1284,8 +1285,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; decoded_clock      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; decoded_flow       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; spdif_cmos         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; clock0             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; rst_n              ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; clock0             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 
 
@@ -1332,9 +1333,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Fitter
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Thu Oct 25 14:18:31 2012
+    Info: Processing started: Thu Jan 10 11:46:40 2013
 Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off equalizer -c equalizer
-Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (119006): Selected device EP4CE115F29C8 for design "equalizer"
 Info (21077): Core supply voltage is 1.2V
 Info (21077): Low junction temperature is 0 degrees C
@@ -1357,8 +1357,8 @@ Critical Warning (169085): No exact pin location assignment(s) for 5 pins of 5 t
     Info (169086): Pin decoded_clock not assigned to an exact location on the device
     Info (169086): Pin decoded_flow not assigned to an exact location on the device
     Info (169086): Pin spdif_cmos not assigned to an exact location on the device
-    Info (169086): Pin clock0 not assigned to an exact location on the device
     Info (169086): Pin rst_n not assigned to an exact location on the device
+    Info (169086): Pin clock0 not assigned to an exact location on the device
 Info (332104): Reading SDC File: 'equalizer.sdc'
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
@@ -1406,10 +1406,17 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info: Quartus II 32-bit Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 523 megabytes
-    Info: Processing ended: Thu Oct 25 14:19:01 2012
-    Info: Elapsed time: 00:00:30
+Info (144001): Generated suppressed messages file D:/projects/EQ/equalizer.fit.smsg
+Info: Quartus II 32-bit Fitter was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 530 megabytes
+    Info: Processing ended: Thu Jan 10 11:47:11 2013
+    Info: Elapsed time: 00:00:31
     Info: Total CPU time (on all processors): 00:00:28
+
+
++----------------------------+
+; Fitter Suppressed Messages ;
++----------------------------+
+The suppressed messages can be found in D:/projects/EQ/equalizer.fit.smsg.
 
 

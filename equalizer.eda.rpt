@@ -1,5 +1,5 @@
 EDA Netlist Writer report for equalizer
-Thu Oct 25 14:19:18 2012
+Thu Jan 10 11:47:25 2013
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Oct 25 14:19:18 2012 ;
+; EDA Netlist Writer Status ; Successful - Thu Jan 10 11:47:25 2013 ;
 ; Revision Name             ; equalizer                             ;
 ; Top-level Entity Name     ; main                                  ;
 ; Family                    ; Cyclone IV E                          ;
@@ -88,7 +88,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit EDA Netlist Writer
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Thu Oct 25 14:19:16 2012
+    Info: Processing started: Thu Jan 10 11:47:24 2013
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off equalizer -c equalizer
 Warning (202000): An incorrect timescale is selected for the Verilog Output (.VO) file of this PLL design. It's required that the timescale should be 1 ps when simulating a PLL design in a third party EDA tool.
 Info (204019): Generated file equalizer_8_1200mv_85c_slow.vo in folder "D:/projects/EQ/simulation/modelsim/" for EDA simulation tool
@@ -103,9 +103,9 @@ Info (204019): Generated file equalizer_8_1200mv_0c_v_slow.sdo in folder "D:/pro
 Info (204019): Generated file equalizer_min_1200mv_0c_v_fast.sdo in folder "D:/projects/EQ/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file equalizer_v.sdo in folder "D:/projects/EQ/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 273 megabytes
-    Info: Processing ended: Thu Oct 25 14:19:18 2012
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 280 megabytes
+    Info: Processing ended: Thu Jan 10 11:47:25 2013
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

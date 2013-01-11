@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for equalizer
-Thu Oct 25 14:19:11 2012
+Thu Jan 10 11:47:18 2013
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -48,6 +48,7 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
  40. Report RSKM
  41. Unconstrained Paths
  42. TimeQuest Timing Analyzer Messages
+ 43. TimeQuest Timing Analyzer Suppressed Messages
 
 
 
@@ -99,7 +100,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; equalizer.sdc ; OK     ; Thu Oct 25 14:19:05 2012 ;
+; equalizer.sdc ; OK     ; Thu Jan 10 11:47:14 2013 ;
 +---------------+--------+--------------------------+
 
 
@@ -316,8 +317,8 @@ No synchronizer chains to report.
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
 ; spdif_cmos              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; clock0                  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; rst_n                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; clock0                  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -398,10 +399,9 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Thu Oct 25 14:19:03 2012
+    Info: Processing started: Thu Jan 10 11:47:12 2013
 Info: Command: quartus_sta equalizer -c equalizer
 Info: qsta_default_script.tcl version: #4
-Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (21077): Core supply voltage is 1.2V
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -444,10 +444,17 @@ Info (332146): Worst-case minimum pulse width slack is 50.250
     Info (332119):    50.250         0.000 clock 
 Info (332101): Design is fully constrained for setup requirements
 Info (332101): Design is fully constrained for hold requirements
-Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 355 megabytes
-    Info: Processing ended: Thu Oct 25 14:19:11 2012
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:04
+Info (144001): Generated suppressed messages file D:/projects/EQ/equalizer.sta.smsg
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 361 megabytes
+    Info: Processing ended: Thu Jan 10 11:47:18 2013
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:03
+
+
++-----------------------------------------------+
+; TimeQuest Timing Analyzer Suppressed Messages ;
++-----------------------------------------------+
+The suppressed messages can be found in D:/projects/EQ/equalizer.sta.smsg.
 
 

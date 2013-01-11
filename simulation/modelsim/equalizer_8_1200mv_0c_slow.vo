@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 32-bit"
 // VERSION "Version 12.0 Build 178 05/31/2012 SJ Web Edition"
 
-// DATE "10/25/2012 14:19:17"
+// DATE "01/10/2013 11:47:25"
 
 // 
 // Device: Altera EP4CE115F29C8 Package FBGA780
@@ -32,20 +32,20 @@ module main (
 	decoded_clock,
 	decoded_flow,
 	spdif_cmos,
-	clock0,
-	rst_n);
+	rst_n,
+	clock0);
 output 	decoded_clock;
 output 	decoded_flow;
 input 	spdif_cmos;
-input 	clock0;
 input 	rst_n;
+input 	clock0;
 
 // Design Ports Information
 // decoded_clock	=>  Location: PIN_P21,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // decoded_flow	=>  Location: PIN_U3,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // spdif_cmos	=>  Location: PIN_A6,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// clock0	=>  Location: PIN_AG18,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// rst_n	=>  Location: PIN_AD26,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// rst_n	=>  Location: PIN_AG18,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// clock0	=>  Location: PIN_AD26,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -64,8 +64,8 @@ initial $sdf_annotate("equalizer_8_1200mv_0c_v_slow.sdo");
 // synopsys translate_on
 
 wire \spdif_cmos~input_o ;
-wire \clock0~input_o ;
 wire \rst_n~input_o ;
+wire \clock0~input_o ;
 wire \decoded_clock~output_o ;
 wire \decoded_flow~output_o ;
 
@@ -107,16 +107,6 @@ defparam \spdif_cmos~input .simulate_z_as = "z";
 // synopsys translate_on
 
 // Location: IOIBUF_X69_Y0_N8
-cycloneive_io_ibuf \clock0~input (
-	.i(clock0),
-	.ibar(gnd),
-	.o(\clock0~input_o ));
-// synopsys translate_off
-defparam \clock0~input .bus_hold = "false";
-defparam \clock0~input .simulate_z_as = "z";
-// synopsys translate_on
-
-// Location: IOIBUF_X115_Y10_N1
 cycloneive_io_ibuf \rst_n~input (
 	.i(rst_n),
 	.ibar(gnd),
@@ -124,6 +114,16 @@ cycloneive_io_ibuf \rst_n~input (
 // synopsys translate_off
 defparam \rst_n~input .bus_hold = "false";
 defparam \rst_n~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X115_Y10_N1
+cycloneive_io_ibuf \clock0~input (
+	.i(clock0),
+	.ibar(gnd),
+	.o(\clock0~input_o ));
+// synopsys translate_off
+defparam \clock0~input .bus_hold = "false";
+defparam \clock0~input .simulate_z_as = "z";
 // synopsys translate_on
 
 assign decoded_clock = \decoded_clock~output_o ;

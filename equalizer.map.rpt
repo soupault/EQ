@@ -1,5 +1,5 @@
 Analysis & Synthesis report for equalizer
-Thu Oct 25 14:18:30 2012
+Thu Jan 10 11:46:39 2013
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -13,11 +13,10 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |main|core:inst|state
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Elapsed Time Per Partition
+ 10. Analysis & Synthesis Messages
+ 11. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -43,7 +42,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Oct 25 14:18:30 2012    ;
+; Analysis & Synthesis Status        ; Successful - Thu Jan 10 11:46:39 2013    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; equalizer                                ;
 ; Top-level Entity Name              ; main                                     ;
@@ -157,14 +156,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                           ;
-+----------------------------------+-----------------+------------------------------------+------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path ; Library ;
-+----------------------------------+-----------------+------------------------------------+------------------------------+---------+
-; main.bdf                         ; yes             ; User Block Diagram/Schematic File  ; D:/projects/EQ/main.bdf      ;         ;
-; b_core.v                         ; yes             ; User Verilog HDL File              ; D:/projects/EQ/b_core.v      ;         ;
-+----------------------------------+-----------------+------------------------------------+------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path      ; Library ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------+---------+
+; main.bdf                         ; yes             ; User Block Diagram/Schematic File  ; D:/projects/EQ/main.bdf           ;         ;
+; 01_edge_detector.v               ; yes             ; User Verilog HDL File              ; D:/projects/EQ/01_edge_detector.v ;         ;
+; 02_assembly.v                    ; yes             ; User Verilog HDL File              ; D:/projects/EQ/02_assembly.v      ;         ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------+---------+
 
 
 +--------------------------------------------------------------------+
@@ -205,32 +205,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-Encoding Type:  One-Hot
-+---------------------------------------+
-; State Machine - |main|core:inst|state ;
-+------------+--------------------------+
-; Name       ; state.0001               ;
-+------------+--------------------------+
-; state.0000 ; 0                        ;
-; state.0001 ; 1                        ;
-+------------+--------------------------+
-
-
-+-------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                            ;
-+----------------------------------------+--------------------------------------+
-; Register name                          ; Reason for Removal                   ;
-+----------------------------------------+--------------------------------------+
-; core:inst|buffer[0..23]                ; Stuck at GND due to stuck port clear ;
-; core:inst|counter[0..7]                ; Stuck at GND due to stuck port clear ;
-; core:inst|state~7                      ; Lost fanout                          ;
-; core:inst|state~8                      ; Lost fanout                          ;
-; core:inst|state~9                      ; Lost fanout                          ;
-; core:inst|state.0001                   ; Stuck at GND due to stuck port clear ;
-; Total Number of Removed Registers = 36 ;                                      ;
-+----------------------------------------+--------------------------------------+
-
-
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
@@ -251,7 +225,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -261,17 +235,16 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Thu Oct 25 14:18:27 2012
+    Info: Processing started: Thu Jan 10 11:46:37 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off equalizer -c equalizer
-Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file 01_edge_detector_tb.v
+    Info (12023): Found entity 1: edge_detector_tb
 Info (12021): Found 1 design units, including 1 entities, in source file z_divider.v
     Info (12023): Found entity 1: divider
 Info (12021): Found 1 design units, including 1 entities, in source file z_dff.v
     Info (12023): Found entity 1: FFE
 Info (12021): Found 1 design units, including 1 entities, in source file equalizer.bdf
     Info (12023): Found entity 1: equalizer
-Info (12021): Found 1 design units, including 1 entities, in source file a_decoder.v
-    Info (12023): Found entity 1: decoder
 Info (12021): Found 1 design units, including 1 entities, in source file a_tb.v
     Info (12023): Found entity 1: testbench
 Info (12021): Found 1 design units, including 1 entities, in source file main.bdf
@@ -280,32 +253,41 @@ Info (12021): Found 1 design units, including 1 entities, in source file b_core.
     Info (12023): Found entity 1: core
 Info (12021): Found 1 design units, including 1 entities, in source file b_tb.v
     Info (12023): Found entity 1: testbench_B
+Info (12021): Found 1 design units, including 1 entities, in source file a_decoder_cc.v
+    Info (12023): Found entity 1: decoder
+Info (12021): Found 1 design units, including 1 entities, in source file 01_edge_detector.v
+    Info (12023): Found entity 1: edge_detector
+Info (12021): Found 1 design units, including 1 entities, in source file 02_assembly.v
+    Info (12023): Found entity 1: assembly
 Info (12127): Elaborating entity "main" for the top level hierarchy
 Warning (275043): Pin "decoded_clock" is missing source
 Warning (275043): Pin "decoded_flow" is missing source
-Warning (275013): Port "clk" of type core and instance "inst" is missing source signal
-Warning (275009): Pin "spdif_cmos" not connected
-Warning (275009): Pin "clock0" not connected
-Warning (275009): Pin "rst_n" not connected
-Info (12128): Elaborating entity "core" for hierarchy "core:inst"
-Warning (10272): Verilog HDL Case Statement warning at b_core.v(39): case item expression covers a value already covered by a previous case item
+Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:inst1"
+Info (12128): Elaborating entity "assembly" for hierarchy "assembly:inst3"
+Info (10264): Verilog HDL Case Statement information at 02_assembly.v(40): all case item expressions in this case statement are onehot
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "decoded_clock" is stuck at GND
     Warning (13410): Pin "decoded_flow" is stuck at GND
-Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file D:/projects/EQ/equalizer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "spdif_cmos"
-    Warning (15610): No output dependent on input pin "clock0"
     Warning (15610): No output dependent on input pin "rst_n"
+    Warning (15610): No output dependent on input pin "clock0"
 Info (21057): Implemented 5 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 2 output pins
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 15 warnings
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 9 warnings
     Info: Peak virtual memory: 300 megabytes
-    Info: Processing ended: Thu Oct 25 14:18:30 2012
-    Info: Elapsed time: 00:00:03
+    Info: Processing ended: Thu Jan 10 11:46:39 2013
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in D:/projects/EQ/equalizer.map.smsg.
 
 
