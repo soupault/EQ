@@ -1,0 +1,33 @@
+module streamlined_mult (
+   input wire [23:0] i_sample,
+   input wire [15:0] i_coefficient,
+	input wire i_start,
+	input wire i_rst_n,
+	input wire i_clk,
+	
+	output reg [39:0] o_product,
+   output o_ready
+);
+
+	reg lsb;
+	reg [4:0] bit;
+	wire ready = !bit;
+   
+always @(posedge i_clk or negedge i_rst_n)
+begin
+	if (~i_rst_n) begin
+		/* TODO */
+	end else begin
+		if (ready && start) begin
+			bit = 16;
+			product = {24'd0, i_coefficient};
+		end else if (bit) begin
+			lsb = product[0];
+			product = product >> 1;
+			bit = bit - 1;
+			if (lsb) product[39:15] = product[38:15] + sample;
+		end
+	end
+end
+
+endmodule

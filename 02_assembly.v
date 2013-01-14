@@ -20,7 +20,7 @@ reg det_Y;
 reg det_Z;
 
 // TODO: add 2 bits of preamble code in output reg
-// TODO: filling output reg with fixed frequency
+// TODO: filling output reg with fixed frequency (?)
 // !!! TODO: check if pkg[i] and pkg[i+1] are equal for even i
 
 localparam pre_X = 8'b11100010;
@@ -62,9 +62,6 @@ begin
 			if ((shift_reg == pre_Z) || (shift_reg == ~pre_Z)) det_Z <= 1'b1;
 				else det_Z <= 1'b0;
 			
-			//if ((det_X || det_Y) || det_Z) 
-			//	counter <= 6'd0;
-			
 			/* Try to latch correct package on next preamble */
 			if (i_head & (counter == 6'd54)) begin
 				for (i = 0; i < 28; i = i+1) begin
@@ -83,7 +80,7 @@ begin
 			end
 			
 			/* Restart packager module */
-			// i_HEAD IS A WIRE !
+			// i_head IS A WIRE, so no delay here
 			if (((det_X || det_Y) || det_Z) || (i_head & (counter == 6'd54))) counter <= 6'd0;	
 			else if (((shift_reg[1:0] == pattern_0) || (shift_reg[1:0] == ~pattern_0)) || ((shift_reg[1:0] == pattern_1) || (shift_reg[1:0] == ~pattern_1))) counter <= counter + 1'b1;
 			

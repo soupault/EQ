@@ -11,7 +11,7 @@ module edge_detector_tb;
 	wire o_head;
 	wire o_shift_ena;
 
-	parameter period = 10; // ???? TODO: check the value
+	parameter period = 10; // TODO: check the value
 	reg [231:0] data;
 	reg [7:0] pointer;
 	

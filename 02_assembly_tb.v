@@ -11,7 +11,7 @@ module assembly_tb;
 	wire [27:0] o_package;
 	wire o_ready;
 	
-	parameter period = 10; // ???? TODO: check the value
+	parameter period = 10; // TODO: check the value
 	reg [55:0] data_common1;
 	reg [59:0] data_h1;
 	reg [59:0] data_01;
