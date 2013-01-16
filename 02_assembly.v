@@ -22,6 +22,7 @@ reg det_Z;
 // TODO: add 2 bits of preamble code in output reg
 // TODO: filling output reg with fixed frequency (?)
 // !!! TODO: check if pkg[i] and pkg[i+1] are equal for even i
+// FYI: cut 4 bits of o_package
 
 localparam pre_X = 8'b11100010;
 localparam pre_Y = 8'b11100100;

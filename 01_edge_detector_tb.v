@@ -49,12 +49,6 @@ edge_detector inst0 (
 		-> reset_off;
 	end
 	
-	always @(bit_flip) begin
-	end
-	
-	always @(long_pulse) begin
-	end
-	
 	/* Main Routine */
 	initial begin
 		#(2*period) -> reset_on;
@@ -66,13 +60,6 @@ edge_detector inst0 (
 			pointer = pointer - 1;
 			#(period) i_spdif = data[pointer];
 		end	
-		//for (pointer = 231; pointer > 0; pointer = pointer - 1) begin
-		//	#(period) i_spdif = data[pointer];
-			/*if (pointer == 40)
-				-> bit_flip;
-			else if (pointer == 80)
-				-> long_pulse;*/
-		// end
 		#(10*period);
    end
 	

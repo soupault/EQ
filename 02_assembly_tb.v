@@ -37,6 +37,8 @@ assembly inst0 (
 	.o_ready		(o_ready)
 );
 
+// TODO: add incorrect bit string for visualization
+
 	initial begin
 		i_zero = 0;
 		i_one = 0;

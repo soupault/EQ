@@ -1,6 +1,19 @@
+module filter_tb (
+   input wire [23:0] i_sample,
+   input wire [15:0] i_coefficients [0:order-1],
+	input wire i_start,
+	input wire i_rst_n,
+	input wire i_clk,
+	
+	output reg [43:0] o_result, // width = i_sample + i_coefficient + log2(order) [rounded upwards]
+   output wire o_ready
+);
+
+//////////////////////////////////////////////////////////////
+
 `timescale 1 ns / 1 ps
 
-module multunit_tb;
+module mult_unit_tb;
 
 	reg [23:0] i_sample;
 	reg [15:0] i_coefficient;
@@ -16,7 +29,7 @@ module multunit_tb;
 	event reset_on;
 	event reset_off;
 	
-multunit inst0 (
+mult_unit inst0 (
 	.i_sample		(i_sample),
 	.i_coefficient	(i_coefficient),
 	.i_start			(i_start),

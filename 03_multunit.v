@@ -1,4 +1,4 @@
-module mult_unit (
+module multunit (
    input wire [23:0] i_sample,
    input wire [15:0] i_coefficient,
 	input wire i_start,
