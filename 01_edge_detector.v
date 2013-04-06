@@ -51,7 +51,7 @@ always @( posedge i_clk or negedge i_rst_n )
     if( ~i_rst_n )
       begin
         o_ena <= 1'b0;
-	   end
+      end
     else
       begin
         if( spdif_str )
