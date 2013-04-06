@@ -1,71 +1,69 @@
 module edge_detector (
-	input wire i_spdif,
-	input wire i_rst_n,
-	input wire i_clk,
-//	input wire i_ena,
+  input  wire  i_spdif,
+  input  wire  i_rst_n,
+  input  wire  i_clk,
 	
-	output reg o_zero,
-	output reg o_one,
-	output reg o_head,
-	output reg o_shift_ena
+  output reg   o_zero,
+  output reg   o_one,
+  output reg   o_head,
+  output reg   o_ena
 );
 
-wire is_edge;
-reg [2:0] ff_bfr;
-reg [4:0] counter;
-reg state;
+reg   [2:0] spdif_d;
+wire        spdif_str;
 
-assign is_edge = ff_bfr[2] ^ ff_bfr[1]; // xor
+reg   [4:0] counter;
 
-always @(posedge i_clk or negedge i_rst_n)
-begin
-	if (~i_rst_n) begin
-		state <= 1'b0;
-		counter <= 5'd0;
-		ff_bfr <= 3'd0;
-		o_zero <= 1'b0;
-		o_one <= 1'b0;
-		o_head <= 1'b0;
-		o_shift_ena <= 1'b0;
-	end else begin
-	//	if (i_ena) begin
-		/* Metastability */
-		ff_bfr[2] <= ff_bfr[1];
-		ff_bfr[1] <= ff_bfr[0];
-		ff_bfr[0] <= i_spdif;
-		
-		case(state)
-		0: begin
-			if (is_edge)
-				state <= 1'b1;
+// ****** Registering input and metastability fix ******
+always @( posedge i_clk or negedge i_rst_n )
+  begin
+    if( ~i_rst_n )
+      begin
+        ff_bfr <= 3'd0;
+	   end
+    else
+      begin
+		  spdif_d <= { spdif_d[1:0], i_spdif };
 		end
-		
-		1: begin
-			if (is_edge) begin
-				counter <= 0;
-					
-				if ((counter >= 5'd3) & (counter <= 5'd7)) begin
-					o_shift_ena <= 1'b1;
-					o_zero <= 1'b1;
-				end else if ((counter >= 5'd9) & (counter <= 5'd13)) begin
-					o_shift_ena <= 1'b1;
-					o_one <= 1'b1;
-				end else if ((counter >= 5'd15) & (counter <= 5'd19)) begin
-					o_shift_ena <= 1'b1;
-					o_head <= 1'b1;
-				end
-			end else begin
-				counter <= counter + 1'b1;
-				o_zero <= 1'b0;
-				o_one <= 1'b0;
-				o_head <= 1'b0;
-				o_shift_ena <= 1'b0;
-			end
-		end
-		endcase
-		
-	//	end
-	end
-end
+  end
+
+assign spdif_str = spdif_d[2] ^ spdif_d[1];
+
+// ****** Counting ticks in a gap ******
+always @( posedge i_clk or negedge i_rst_n )
+  begin
+    if( ~i_rst_n )
+      begin
+        counter <= 5'b0;
+	   end
+    else
+      begin
+		  if( spdif_str )
+          counter <= 5'b0;
+        else
+          counter <= counter + 1'b1;
+      end
+  end
+
+// ****** Generating output enable strobe ******
+always @( posedge i_clk or negedge i_rst_n )
+  begin
+    if( ~i_rst_n )
+      begin
+        o_ena <= 1'b0;
+	   end
+    else
+      begin
+		  if( spdif_str )
+          o_ena <= 1'b1;
+        else
+          o_ena <= 1'b0;
+      end
+  end
+
+assign o_zero = ( counter >= 5'd3  ) & ( counter <= 5'd7  );
+assign o_one  = ( counter >= 5'd9  ) & ( counter <= 5'd13 );
+assign o_head = ( counter >= 5'd15 ) & ( counter <= 5'd19 );
 
 endmodule
+

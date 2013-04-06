@@ -1,4 +1,5 @@
-// Function    : D flip-flop async reset
+// Function : D flip-flop async reset
+// Purpose  : for simulating design in ModelSim Web version
 
 module FFE (d, clk, clrn, ena, q);
 
