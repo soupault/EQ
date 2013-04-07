@@ -20,11 +20,11 @@ always @( posedge i_clk or negedge i_rst_n )
     if( ~i_rst_n )
       begin
         ff_bfr <= 3'd0;
-	   end
+      end
     else
       begin
-		  spdif_d <= { spdif_d[1:0], i_spdif };
-		end
+        spdif_d <= { spdif_d[1:0], i_spdif };
+      end
   end
 
 assign spdif_str = spdif_d[2] ^ spdif_d[1];
@@ -35,10 +35,10 @@ always @( posedge i_clk or negedge i_rst_n )
     if( ~i_rst_n )
       begin
         counter <= 5'b0;
-	   end
+      end
     else
       begin
-		  if( spdif_str )
+        if( spdif_str )
           counter <= 5'b0;
         else
           counter <= counter + 1'b1;
@@ -51,10 +51,10 @@ always @( posedge i_clk or negedge i_rst_n )
     if( ~i_rst_n )
       begin
         o_ena <= 1'b0;
-	   end
+      end
     else
       begin
-		  if( spdif_str )
+        if( spdif_str )
           o_ena <= 1'b1;
         else
           o_ena <= 1'b0;
