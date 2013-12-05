@@ -1,28 +1,29 @@
-module assembly (
-	input wire i_zero,
-	input wire i_one,
-	input wire i_head,
-	input wire i_rst_n,
-	input wire i_clk,
-	input wire i_ena,
+module assembly
+(
+	input               zero_i,
+	input               one_i,
+	input               head_i,
+	input               nrst_i,
+	input               clk_i,
+	input               ena_i,
 
-	output reg [27:0] o_package,
-	output reg o_ready
+	output logic [27:0] package_o,
+	output logic        ready_o
 );
 
-reg [7:0] shift_reg;
-reg [55:0] package_reg;
-reg [5:0] counter;
-reg [6:0] i;
+logic [7:0]   shift_reg;
+logic [55:0]  package_reg;
+logic [5:0]   counter;
+logic [6:0]   i;
 
-reg det_X;
-reg det_Y;
-reg det_Z;
+logic         det_X;
+logic         det_Y;
+logic         det_Z;
 
 // TODO: add 2 bits of preamble code in output reg
 // TODO: filling output reg with fixed frequency (?)
 // !!! TODO: check if pkg[i] and pkg[i+1] are equal for even i
-// FYI: cut 4 bits of o_package
+// FYI: cut 4 bits of package_o
 
 localparam pre_X = 8'b11100010;
 localparam pre_Y = 8'b11100100;
@@ -33,11 +34,11 @@ localparam pre_Z = 8'b11101000;
 localparam pattern_0 = 2'b11;
 localparam pattern_1 = 2'b10;
 
-always @(posedge i_clk or negedge i_rst_n)
+always @(posedge clk_i or negedge nrst_i)
 begin
-	if (~i_rst_n) begin
-		o_package = 28'd0;
-		o_ready = 1'b0;
+	if (~nrst_i) begin
+		package_o = 28'd0;
+		ready_o = 1'b0;
 		shift_reg = 8'd0;
 		package_reg = 28'd0;
 		counter = 6'd0;
@@ -45,10 +46,10 @@ begin
 		det_Y = 1'b0;
 		det_Z = 1'b0;
 	end else begin
-		if (i_ena) begin
+		if (ena_i) begin
 			
 			/* Create data-flow */
-			case ({i_head, i_one, i_zero})
+			case ({head_i, one_i, zero_i})
 				3'b001: shift_reg <= {shift_reg[5:0], {2{~shift_reg[0]}}};
 				3'b010: shift_reg <= {shift_reg[6:0], ~shift_reg[0]};
 				3'b100: shift_reg <= {shift_reg[4:0], {3{~shift_reg[0]}}};
@@ -64,13 +65,13 @@ begin
 				else det_Z <= 1'b0;
 			
 			/* Try to latch correct package on next preamble */
-			if (i_head & (counter == 6'd54)) begin
+			if (head_i & (counter == 6'd54)) begin
 				for (i = 0; i < 28; i = i+1) begin
-					o_package[i] <= package_reg[i<<1];
+					package_o[i] <= package_reg[i<<1];
 				end
-				o_ready <= 1'b1;
+				ready_o <= 1'b1;
 			end else
-				o_ready <= 1'b0;
+				ready_o <= 1'b0;
 			
 			/* Decode and create audio-block */
 			if ((shift_reg[1:0] == pattern_0) || (shift_reg[1:0] == ~pattern_0)) begin
@@ -81,8 +82,8 @@ begin
 			end
 			
 			/* Restart packager module */
-			// i_head IS A WIRE, so no delay here
-			if (((det_X || det_Y) || det_Z) || (i_head & (counter == 6'd54))) counter <= 6'd0;	
+			// head_i IS A WIRE, so no delay here
+			if (((det_X || det_Y) || det_Z) || (head_i & (counter == 6'd54))) counter <= 6'd0;	
 			else if (((shift_reg[1:0] == pattern_0) || (shift_reg[1:0] == ~pattern_0)) || ((shift_reg[1:0] == pattern_1) || (shift_reg[1:0] == ~pattern_1))) counter <= counter + 1'b1;
 			
 		end
