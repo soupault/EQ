@@ -1,5 +1,6 @@
 `timescale 1ns / 1ns
 
+`include "pkg.sv"
 `include "../top.sv"
 `include "dut_if.sv"
 

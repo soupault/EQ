@@ -4,9 +4,9 @@ module edge_detector
   input         nrst_i,
   input         clk_i,
   
-  output logic  zero_o,
-  output logic	one_o,
-  output logic	head_o,
+  output logic  one_o,
+  output logic	two_o,
+  output logic	three_o,
   output logic	ena_o
 );
 
@@ -54,9 +54,9 @@ always_ff @( posedge clk_i or negedge nrst_i )
       end
   end
 
-assign zero_o = ( counter >= 5'd3  ) & ( counter <= 5'd7  );
-assign one_o  = ( counter >= 5'd9  ) & ( counter <= 5'd13 );
-assign head_o = ( counter >= 5'd15 ) & ( counter <= 5'd19 );
+assign one_o   = ( counter >= 5'd3  ) & ( counter <= 5'd7  );
+assign two_o   = ( counter >= 5'd9  ) & ( counter <= 5'd13 );
+assign three_o = ( counter >= 5'd15 ) & ( counter <= 5'd19 );
 
 endmodule
 
