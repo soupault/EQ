@@ -19,7 +19,7 @@ class my_monitor extends uvm_monitor;
   
   function void connect_phase( uvm_phase phase );
     super.connect_phase( phase );
-    dut_vi = x.dut_vi;
+    dut_vi = x_config.dut_vi;
   endfunction: connect_phase
 
   task run_phase( uvm_phase phase );

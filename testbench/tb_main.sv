@@ -11,7 +11,30 @@ module tb_main;
 
   dut_if  dut_iface(); 
   
-  top     dut_top( .main_if( dut_iface ) );
+  initial
+    begin
+      dut_iface.clk6 = 0;
+      forever
+        #1.0 dut_iface.clk6 = ~dut_iface.clk6;
+    end
+
+  initial
+    begin
+      dut_iface.clk2 = 0;
+      forever
+        #3.0 dut_iface.clk2 = ~dut_iface.clk2;
+    end
+  
+  initial
+    begin
+      dut_iface.clk = 0;
+      forever
+        #6.0 dut_iface.clk = ~dut_iface.clk;
+    end
+ 
+  top dut_top(
+    .main_if( dut_iface )
+  );
 
   initial
     begin
