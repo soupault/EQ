@@ -4,59 +4,59 @@ module edge_detector
   input         nrst_i,
   input         clk_i,
   
-  output logic  one_o,
-  output logic	two_o,
-  output logic	three_o,
-  output logic	ena_o
+  output logic  short_o,
+  output logic  mid_o,
+  output logic  long_o,
+  output logic  ena_o
 );
 
 logic [2:0] spdif_d;
-logic 		  spdif_str;
+logic 		  spdif_stb;
 
 logic [4:0] counter;
 
 // ****** Registering input and metastability fix ******
 always_ff @( posedge clk_i or negedge nrst_i )
-  begin
-    if( ~nrst_i )
-      spdif_d <= 3'd0;
-    else
-      spdif_d <= { spdif_d[1:0], spdif_i };
-  end
+  if( ~nrst_i )
+    spdif_d <= '0;
+  else
+    spdif_d <= { spdif_d[1:0], spdif_i };
 
-assign spdif_str = spdif_d[2] ^ spdif_d[1];
+assign spdif_stb = spdif_d[2] ^ spdif_d[1];
 
 // ****** Counting ticks in a gap ******
 always_ff @( posedge clk_i or negedge nrst_i )
-  begin
-    if( ~nrst_i )
-      counter <= 5'b0;
-    else
-      begin
-        if( spdif_str )
-          counter <= 5'b0;
-        else
-          counter <= counter + 1'b1;
-      end
-  end
+  if( ~nrst_i )
+    counter <= '0;
+  else
+    begin
+      if( spdif_stb )
+        counter <= '0;
+      else
+        counter <= counter + 1'b1;
+    end
 
 // ****** Generating output enable strobe ******
 always_ff @( posedge clk_i or negedge nrst_i )
-  begin
-    if( ~nrst_i )
-      ena_o <= 1'b0;
-    else
-      begin
-        if( spdif_str )
-          ena_o <= 1'b1;
-        else
-          ena_o <= 1'b0;
-      end
-  end
+  if( ~nrst_i )
+    ena_o <= '0;
+  else
+    ena_o <= spdif_stb;
 
-assign one_o   = ( counter >= 5'd3  ) & ( counter <= 5'd7  );
-assign two_o   = ( counter >= 5'd9  ) & ( counter <= 5'd13 );
-assign three_o = ( counter >= 5'd15 ) & ( counter <= 5'd19 );
+// ****** Generating output data signal ******
+always_ff @( posedge clk_i or negedge nrst_i )
+  if( ~nrst_i )
+    begin
+      short_o <= '0;
+      mid_o   <= '0;
+      long_o  <= '0;
+    end
+  else
+    begin
+      short_o <= ( counter >= 5'd3  ) & ( counter <= 5'd7  );
+      mid_o   <= ( counter >= 5'd9  ) & ( counter <= 5'd13 );
+      long_o  <= ( counter >= 5'd15 ) & ( counter <= 5'd19 );
+    end
 
 endmodule
 

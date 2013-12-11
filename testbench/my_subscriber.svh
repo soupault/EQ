@@ -13,7 +13,7 @@ class my_subscriber extends uvm_subscriber #( my_transaction );
   endgroup: coverbus
   */
 
-  function void write( my_transaction t);
+  function void write( my_transaction t );
     // get vars from t.?
     // cover_bus.sample() // store information to coverage db
 

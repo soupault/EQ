@@ -12,10 +12,10 @@ module tb_main;
   dut_if  dut_iface(); 
   
   top     dut_top( .main_if( dut_iface ) );
- 
+
   initial
     begin
-      $display( "All is over!" );
+      $display( "*** Global start ***" );
       // Passing dut_if to config database
       uvm_config_db #( virtual dut_if )::set( null, "uvm_test_top",
                                               "dut_vi", dut_iface );
