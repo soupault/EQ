@@ -24,7 +24,7 @@ class my_sequence extends uvm_sequence #( my_transaction );
     // generate input signal and dynamic array for it
     cmd.itoa( sample_lenght );
     cmd = { "python ./white_noise.py ", cmd };
-    `uvm_info( cmd )
+    `uvm_info( "ID", cmd, UVM_NONE )
     $system( cmd );
     subframes = new[ sample_lenght ];
     
@@ -36,8 +36,8 @@ class my_sequence extends uvm_sequence #( my_transaction );
         $sscanf( line, "%d\n", sample );
         // TODO: casting should work here, but it doesn't
         // subframes[index][AUDIO_SAMPLE] = 24'sample;
-        subframes[i][`AUDIO_SAMPLE] = sample;
-        subframes[i][`AUX_SAMPLE]   = '0; // because of 24bits sample depth
+        // because of 24bits sample depth
+        { subframes[i][`AUDIO_SAMPLE], subframes[i][`AUX_SAMPLE] } = sample;
         i = i + 1;
       end
     $fclose( fd );
@@ -75,9 +75,9 @@ class my_sequence extends uvm_sequence #( my_transaction );
           begin
             // if last signal value is HIGH(1); [ 00/11 - 'd0, 10/01 - 'd1 ]
             if( temp[56-k*2] )
-              temp[56-k*2-2 +: 2] = subframes[i][k] ? 2'b00 : 2'b01;
+              temp[56-k*2-2 +: 2] = subframes[i][k] ? 2'b01 : 2'b00;
             else
-              temp[56-k*2-2 +: 2] = subframes[i][k] ? 2'b11 : 2'b10;
+              temp[56-k*2-2 +: 2] = subframes[i][k] ? 2'b10 : 2'b11;
           end
         
         // switch polarity due to last transmitted bit 

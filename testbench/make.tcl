@@ -101,7 +101,7 @@ proc all {} {
   compile_src
 }
 
-proc run_test_nwf {} { 
+proc nwf {} { 
   quit -sim
   compile_src
   vlog -work work -refresh
@@ -110,15 +110,15 @@ proc run_test_nwf {} {
   run -all
 }
 
-proc run_test_awf {} { 
+proc awf {} { 
   quit -sim
   compile_src
   vlog -work work -refresh 
   echo "# NOTE: Starting simulation..."
   vsim -novopt +UVM_TESTNAME=my_test tb_main
-  #add wave -r -hex sim:/tb_main/*
-  #delete wave *field_split_ram*
-  #add wave -hex sim:/tb_main/dut/tap_stat/stat_data
+  add wave -r -hex sim:/tb_main/*
+  #delete wave *some_pattern*
+  #add wave -hex sim:/tb_main/submodule/signal
   run -all
 }
 
@@ -131,12 +131,12 @@ proc q {} {
 }
 
 proc show_help {} {
-  echo "show_help           - show this message"
-  echo "all                 - compile all"
-  echo "run_test_nwf        - run test with no  waveforms"
-  echo "run_test_awf        - run test with all waveforms"
-  echo "qs                  - quit from simulation"
-  echo "q                   - quit"
+  echo "show_help  - show this message"
+  echo "all        - compile all"
+  echo "nwf        - run test with no  waveforms"
+  echo "awf        - run test with all waveforms"
+  echo "qs         - quit from simulation"
+  echo "q          - quit"
 }
 
 echo "# NOTE: Compiling design..."

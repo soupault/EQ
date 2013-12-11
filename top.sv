@@ -21,7 +21,7 @@ logic         ena_dec2fifo_w;
 edge_detector edge_detector
 (
   .spdif_i    ( main_if.spdif ),
-  .clk_i      ( main_if.clk   ),
+  .clk_i      ( main_if.clk6  ),
   .nrst_i     ( main_if.nrst  ),
 
   .short_o    ( short_w       ),
@@ -37,12 +37,12 @@ decoder decoder
   .long_i     ( long_w        ),
   .ena_i      ( ena_ed2dec_w  ),
 
-  .clk_i      ( main_if.clk   ),
+  .clk_i      ( main_if.clk6  ),
   .nrst_i     ( main_if.nrst  ),
 
-  .package_o  (               ),
-  .preamble_o (               ),
-  .ena_o      (               )
+  .package_o  ( package_w     ),
+  .preamble_o ( preamble_w    ),
+  .ena_o      ( ena_dec2fifo_w)
 );
 
 // TODO: add data and status FIFOs

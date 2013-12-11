@@ -53,9 +53,9 @@ always_ff @( posedge clk_i or negedge nrst_i )
     end
   else
     begin
-      short_o <= ( counter >= 5'd3  ) & ( counter <= 5'd7  );
-      mid_o   <= ( counter >= 5'd9  ) & ( counter <= 5'd13 );
-      long_o  <= ( counter >= 5'd15 ) & ( counter <= 5'd19 );
+      short_o <= ( counter >= 5'd1 ) & ( counter <= 5'd3 );
+      mid_o   <= ( counter >= 5'd4 ) & ( counter <= 5'd6 );
+      long_o  <= ( counter >= 5'd7 ) & ( counter <= 5'd9 );
     end
 
 endmodule

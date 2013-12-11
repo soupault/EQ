@@ -9,8 +9,11 @@ module tb_main;
   import uvm_pkg::*;
   import my_pkg::*;
 
-  dut_if  dut_iface(); 
-  
+  dut_if  dut_iface();
+ 
+  default clocking clock @( posedge dut_iface.clk6 );
+  endclocking
+
   initial
     begin
       dut_iface.clk6 = 0;
@@ -31,7 +34,14 @@ module tb_main;
       forever
         #6.0 dut_iface.clk = ~dut_iface.clk;
     end
- 
+
+  initial
+    begin
+      dut_iface.nrst = 0;
+      ##1;
+      dut_iface.nrst = 1;
+    end
+
   top dut_top(
     .main_if( dut_iface )
   );

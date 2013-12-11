@@ -21,6 +21,7 @@ class my_driver extends uvm_driver #( my_transaction );
   endfunction: connect_phase
   
   task run_phase( uvm_phase phase );
+    dut_vi.spdif = '0;
 
     forever 
       begin

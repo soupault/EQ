@@ -55,7 +55,7 @@ always_ff @( posedge clk_i or negedge nrst_i )
     len_bfr <= '0;
   else
     if( ena_i )
-      len_bfr <= { len_bfr[7:2], len };
+      len_bfr <= { len_bfr[5:0], len };
 
 
 // ****** Decoding ******
@@ -70,9 +70,9 @@ always_comb
   begin
     case( state )
       PREAMBLE_SEARCH_S :
-        if( ( len_bfr == PRE_X ) & ( len_bfr == ~PRE_X ) &
-            ( len_bfr == PRE_Y ) & ( len_bfr == ~PRE_Y ) &
-            ( len_bfr == PRE_Z ) & ( len_bfr == ~PRE_Z ) )
+        if( ( len_bfr == PRE_X ) | ( len_bfr == ~PRE_X ) |
+            ( len_bfr == PRE_Y ) | ( len_bfr == ~PRE_Y ) |
+            ( len_bfr == PRE_Z ) | ( len_bfr == ~PRE_Z ) )
           next_state = DECODE_IDLE_S;  // accumulate 2 lenghts
 
       DECODE_IDLE_S     :
@@ -95,12 +95,13 @@ always_ff @( posedge clk_i or negedge nrst_i )
     preamble_o <= '0;
   else
     if( ena_i )
-      case( len_bfr )
-        PRE_X, ~PRE_X : preamble_o <= 2'b01; 
-        PRE_Y, ~PRE_Y : preamble_o <= 2'b11; 
-        PRE_Z, ~PRE_Z : preamble_o <= 2'b10;
-        default       : preamble_o <= 2'b00; 
-      endcase
+      if( state == PREAMBLE_SEARCH_S )
+        case( len_bfr )
+          PRE_X, ~PRE_X : preamble_o <= 2'b01; 
+          PRE_Y, ~PRE_Y : preamble_o <= 2'b11; 
+          PRE_Z, ~PRE_Z : preamble_o <= 2'b10;
+          default       : preamble_o <= 2'b00; 
+        endcase
 
 // ****** Generating output data ******
 always_ff @( posedge clk_i or negedge nrst_i )
@@ -141,7 +142,7 @@ always_ff @( posedge clk_i or negedge nrst_i )
       begin 
         if( ( state == DECODE_DATA_S ) & 
             ( next_state == PREAMBLE_SEARCH_S ) &
-            ( counter == 5'd27 ) )
+            ( counter == 5'd28 ) )
           ena_o <= '1;
         else
           ena_o <= '0;
