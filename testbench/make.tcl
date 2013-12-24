@@ -1,9 +1,8 @@
 
 set tb_path         [pwd]
 set project_path    [pwd]/../
-# set quartus_sim_lib /usr/local/altera/quartus11.0/quartus/eda/sim_lib # FIXME
-set quartus_sim_lib ""
-set uvm_lib         /home/egor/workspace/uvm-1.1d/src
+set quartus_sim_lib $::env(HOME)/software/quartus13.1/quartus/eda/sim_lib
+set uvm_lib         $::env(HOME)/workspace/uvm-1.1d/src
 set inc_dir         "$project_path $tb_path $uvm_lib"
 
 # verilog global defines. examples:
@@ -27,7 +26,7 @@ if [file exists work] {
   vdel -all
 }
 vlib work
-vmap altera_mf work
+# vmap altera_mf work
 
 
 if [file exists vlog.opt] {
@@ -140,6 +139,7 @@ proc show_help {} {
 }
 
 echo "# NOTE: Compiling design..."
+do verilog-library-setup.tcl
 compile_src
 show_help
 
