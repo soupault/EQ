@@ -10,7 +10,7 @@ class my_sequence extends uvm_sequence #( my_transaction );
 
   
   task body;
-    int           sample_lenght = 10;
+    int           sample_lenght = 40;
     string        cmd;
     logic [27:0]  subframes[]; // no preamble included
     int           fd;

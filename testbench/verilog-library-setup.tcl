@@ -1,6 +1,6 @@
 #This file contains the commands to create libraries and compile the library file into those libraries.
 
-set path_to_quartus $::env(HOME)/software/quartus13.1/quartus
+set path_to_quartus $::env(HOME)/software/altera/quartus
 set type_of_sim compile_all
 
 # The type_of_sim should be one of the following values

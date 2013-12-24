@@ -1,7 +1,7 @@
 
 set tb_path         [pwd]
 set project_path    [pwd]/../
-set quartus_sim_lib $::env(HOME)/software/quartus13.1/quartus/eda/sim_lib
+set quartus_sim_lib $::env(HOME)/software/altera/quartus/eda/sim_lib
 set uvm_lib         $::env(HOME)/workspace/uvm-1.1d/src
 set inc_dir         "$project_path $tb_path $uvm_lib"
 
@@ -100,12 +100,13 @@ proc all {} {
   compile_src
 }
 
+# TODO: include all the Altera libraries
 proc nwf {} { 
   quit -sim
   compile_src
   vlog -work work -refresh
   echo "# NOTE: Starting simulation..."
-  vsim -novopt +UVM_TESTNAME=my_test tb_main
+  vsim -novopt -L lpm_ver -L altera_mf_ver +UVM_TESTNAME=my_test tb_main
   run -all
 }
 
@@ -114,7 +115,7 @@ proc awf {} {
   compile_src
   vlog -work work -refresh 
   echo "# NOTE: Starting simulation..."
-  vsim -novopt +UVM_TESTNAME=my_test tb_main
+  vsim -novopt -L lpm_ver -L altera_mf_ver +UVM_TESTNAME=my_test tb_main
   add wave -r -hex sim:/tb_main/*
   #delete wave *some_pattern*
   #add wave -hex sim:/tb_main/submodule/signal

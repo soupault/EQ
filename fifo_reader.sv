@@ -11,7 +11,7 @@ module fifo_reader
 
 	input               empty_i,
 	input               full_i, 
-	input               usedw_i, // TODO: fix width
+	input [2:0]         usedw_i, // TODO: fix width
          
 	output logic                rdreq_o,
   output logic [D_WIDTH-1:0]  data_o,
