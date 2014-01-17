@@ -26,13 +26,14 @@ class my_monitor extends uvm_monitor;
     forever 
       begin
         my_transaction tx;
-        @( posedge dut_vi.clk2 );
         tx = my_transaction::type_id::create( "tx" );
-        // TODO:
-        tx.data = dut_vi.spdif;
-
-        // Sends tx through analysis port
-        aport.write( tx );
+        @( posedge dut_vi.clk );
+        if( dut_vi.pcm_ena )
+          begin
+            tx.data = dut_vi.pcm;
+            // Sends tx through analysis port
+            aport.write( tx );
+          end
       end
   endtask: run_phase
 
