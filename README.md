@@ -1,18 +1,5 @@
-Developing S/PDIF to PCM converter.
-Plus band equalizer in the middle.
+**This code is more of a historical artefact from a job interview. Certain components may function, yet no guarantees are provided overall.**
 
-Input clock is 384xFs (Fs - samples freq) = 18.432 MHz.
-Samples are 48 kHz, 24 bits.
+S/PDIF to PCM converter, with band equalizer in-between.
 
-In case of sample loss use previous one (no interpolation).
-
-Filters bands are fixed. Configuring only gains.
-
-Old code is shit. Refactoring and creating UVM.
-
-           ___                     _____ 
-      ___ / _ \__ _____  ___ ___ _<  / /_
-     (_-</ // / // / _ \/ _ `/ // / / __/
-    /___/\___/\_,_/ .__/\_,_/\_,_/_/\__/ 
-                 /_/                     
-
+Input clock is 384xFs (Fs - samples freq) = 18.432 MHz. Samples are 48 kHz, 24 bits.
